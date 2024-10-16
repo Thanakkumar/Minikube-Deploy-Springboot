@@ -1,0 +1,28 @@
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: deploy-app-service
+#spec:
+#  type: NodePort
+#  selector:
+#    app: deploy-app
+#  ports:
+#    - name: http
+#      port: 8080  # Port on which the service will be exposed inside the cluster
+#      targetPort: 8081  # Port on which the container listens
+#      nodePort: 30000  # NodePort number (adjust as needed within the allowed range)
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-springboot-app-service
+spec:
+  selector:
+    app: my-springboot-app  # Selects pods with the label app=my-springboot-app
+  ports:
+    - protocol: TCP
+      port: 8080               # External port
+      targetPort: 8080          # Port the container listens on
+  type: NodePort              # Exposes the service externally on a node's IP address
+
+

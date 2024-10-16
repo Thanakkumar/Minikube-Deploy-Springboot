@@ -1,0 +1,39 @@
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: deploy-app
+#spec:
+#  replicas: 2
+#  selector:
+#    matchLabels:
+#      app: deploy-app
+#  template:
+#    metadata:
+#      labels:
+#        app: deploy-app
+#    spec:
+#      containers:
+#        - name: docker-deploy-app
+#          image: deploy-app:v1
+#          imagePullPolicy: IfNotPresent
+#          ports:
+#            - containerPort: 8081
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-springboot-app
+spec:
+  replicas: 2   # This ensures two instances (pods) of the application are running.
+  selector:
+    matchLabels:
+      app: my-springboot-app
+  template:
+    metadata:
+      labels:
+        app: my-springboot-app
+    spec:
+      containers:
+        - name: my-springboot-app
+          image:  thanakkumarthangavel928/my-springboot-app:latest # Docker image of your Spring Boot app
+          ports:
+            - containerPort: 8080  # The port the container listens on
